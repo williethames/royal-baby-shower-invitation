@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Royal Baby Shower - Erika & Willie</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Great+Vibes&family=Dancing+Script:wght@400;700&family=Allura&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: linear-gradient(135deg, #0B1426 0%, #1B1F3B 30%, #002DB0 70%, #1a237e 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Celestial Background Elements */
+        .celestial-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .moon {
+            position: absolute;
+            top: 8%;
+            right: 12%;
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 25% 25%, rgba(255, 215, 0, 0.4) 0%, rgba(255, 215, 0, 0.25) 40%, rgba(173, 216, 230, 0.15) 70%, transparent 100%);
+            border-radius: 50%;
+            box-shadow: 0 0 40px rgba(255, 215, 0, 0.3);
+            animation: moonGlow 6s ease-in-out infinite alternate;
+        }
+
+        .star {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.8) 0%, rgba(255, 215, 0, 0.4) 50%, transparent 100%);
+            border-radius: 50%;
+            animation: twinkle 4s ease-in-out infinite alternate;
+        }
+
+        .star:nth-child(2) { top: 15%; left: 8%; width: 5px; height: 5px; animation-delay: 0.5s; }
+        .star:nth-child(3) { top: 25%; left: 18%; width: 4px; height: 4px; animation-delay: 1.2s; }
+        .star:nth-child(4) { top: 12%; left: 82%; width: 6px; height: 6px; animation-delay: 2s; }
+        .star:nth-child(5) { top: 35%; left: 88%; width: 3px; height: 3px; animation-delay: 0.8s; }
+        .star:nth-child(6) { top: 65%; left: 3%; width: 5px; height: 5px; animation-delay: 3s; }
+        .star:nth-child(7) { top: 75%; left: 12%; width: 4px; height: 4px; animation-delay: 1.8s; }
+        .star:nth-child(8) { top: 85%; left: 78%; width: 6px; height: 6px; animation-delay: 0.3s; }
+        .star:nth-child(9) { top: 28%; left: 52%; width: 3px; height: 3px; animation-delay: 2.5s; }
+        .star:nth-child(10) { top: 68%; left: 65%; width: 5px; height: 5px; animation-delay: 1.5s; }
+        .star:nth-child(11) { top: 48%; left: 25%; width: 4px; height: 4px; animation-delay: 0.2s; }
+
+        .floating-bubble {
+            position: absolute;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.08) 0%, rgba(173, 216, 230, 0.05) 60%, transparent 100%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite;
+            border: 1px solid rgba(255, 215, 0, 0.1);
+        }
+
+        .bubble1 { top: 12%; left: 35%; width: 25px; height: 25px; animation-delay: 0s; }
+        .bubble2 { top: 55%; left: 85%; width: 18px; height: 18px; animation-delay: 3s; }
+        .bubble3 { top: 82%; left: 22%; width: 30px; height: 30px; animation-delay: 6s; }
+        .bubble4 { top: 38%; left: 75%; width: 22px; height: 22px; animation-delay: 2s; }
+        .bubble5 { top: 78%; left: 55%; width: 15px; height: 15px; animation-delay: 4s; }
+
+        @keyframes moonGlow {
+            0% { box-shadow: 0 0 40px rgba(255, 215, 0, 0.3); transform: scale(1); }
+            100% { box-shadow: 0 0 60px rgba(255, 215, 0, 0.5); transform: scale(1.08); }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.4; transform: scale(1); }
+            100% { opacity: 1; transform: scale(1.3); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            33% { transform: translateY(-25px) translateX(15px); }
+            66% { transform: translateY(15px) translateX(-8px); }
+        }
+
+        .invitation-container {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.25) 0%, rgba(248, 249, 255, 0.20) 30%, rgba(245, 245, 220, 0.15) 70%, rgba(255, 255, 255, 0.22) 100%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 215, 0, 0.30);
+            border-radius: 30px;
+            box-shadow: 
+                0 30px 100px rgba(27, 31, 59, 0.25), 
+                0 15px 50px rgba(255, 215, 0, 0.08),
+                0 0 0 1px rgba(255, 255, 255, 0.40),
+                inset 0 1px 0 rgba(255, 255, 255, 0.50);
+            max-width: 520px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            background: linear-gradient(135deg, rgba(27, 31, 59, 0.45) 0%, rgba(0, 45, 176, 0.40) 30%, rgba(26, 35, 126, 0.35) 70%, rgba(27, 31, 59, 0.42) 100%);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            padding: 45px 35px 70px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.35);
+        }
+
+        .ultrasound-logo {
+            width: 140px;
+            height: 115px;
+            margin: 0 auto 25px;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 4px solid #FFD700;
+            box-shadow: 0 0 25px rgba(255, 215, 0, 0.5), inset 0 0 10px rgba(255, 215, 0, 0.2);
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(8px);
+        }
+
+        .ultrasound-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(30%) contrast(1.2) brightness(1.2);
+        }
+
+        .crown-accents {
+            position: absolute;
+            top: 15px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .crown-accent {
+            width: 35px;
+            height: 30px;
+            opacity: 0.8;
+            position: relative;
+        }
+
+        .crown-accent::before {
+            content: '';
+            position: absolute;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 15px;
+            background: #FFD700;
+            border-radius: 0 0 12px 12px;
+        }
+
+        .crown-accent::after {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 10px solid #FFD700;
+        }
+
+        .title {
+            color: #FFD700;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .subtitle {
+            color: #FFD700;
+            font-family: 'Great Vibes', cursive;
+            font-size: 1.6rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .decorative-border {
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 140%;
+            height: 50px;
+            background: radial-gradient(ellipse at center, rgba(255,215,0,0.4) 0%, rgba(255,215,0,0.2) 50%, transparent 80%);
+        }
+
+        .content {
+            padding: 55px 35px 35px;
+            text-align: center;
+        }
+
+        .main-text {
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #1B1F3B;
+            margin-bottom: 35px;
+            line-height: 1.3;
+            text-shadow: 1px 1px 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .honor-text {
+            font-family: 'Allura', cursive;
+            font-size: 1.3rem;
+            color: #002DB0;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 2px rgba(255, 215, 0, 0.2);
+        }
+
+        .honorees {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 2.4rem;
+            font-weight: 700;
+            color: #FFD700;
+            margin: 25px 0;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(27, 31, 59, 0.6);
+            -webkit-text-stroke: 1px rgba(27, 31, 59, 0.3);
+        }
+
+        .event-details {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15) 0%, rgba(248, 249, 255, 0.8) 50%, rgba(245, 245, 220, 0.7) 100%);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 35px 0;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 8px 25px rgba(27, 31, 59, 0.1);
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 18px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+
+        .detail-label {
+            font-family: 'Cinzel Decorative', serif;
+            font-weight: 400;
+            color: #1B1F3B;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            color: #002DB0;
+            font-weight: 600;
+            text-align: right;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .rsvp-section {
+            background: linear-gradient(135deg, rgba(0, 45, 176, 0.9) 0%, rgba(27, 31, 59, 0.85) 100%);
+            backdrop-filter: blur(8px);
+            color: #FFD700;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            box-shadow: 0 8px 25px rgba(27, 31, 59, 0.2);
+        }
+
+        .rsvp-title {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .rsvp-details {
+            font-size: 1.1rem;
+            font-weight: 400;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .diaper-raffle {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.9) 0%, rgba(255, 215, 0, 0.8) 100%);
+            backdrop-filter: blur(8px);
+            color: #1B1F3B;
+            padding: 25px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+            border: 3px solid rgba(27, 31, 59, 0.3);
+            box-shadow: 0 8px 25px rgba(255, 215, 0, 0.3);
+        }
+
+        .diaper-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        .diaper-text {
+            font-weight: 600;
+            font-size: 1rem;
+            font-family: 'Open Sans', sans-serif;
+        }
+
+        .registry-section {
+            margin-top: 35px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1) 0%, rgba(248, 249, 255, 0.8) 50%, rgba(245, 245, 220, 0.6) 100%);
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+        }
+
+        .registry-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 1.6rem;
+            color: #1B1F3B;
+            text-align: center;
+            margin-bottom: 30px;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(255, 215, 0, 0.3);
+        }
+
+        .registry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+
+        .registry-button {
+            display: block;
+            text-decoration: none;
+            text-align: center;
+            padding: 25px 20px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.40) 0%, rgba(255, 215, 0, 0.02) 100%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 20px;
+            box-shadow: 
+                0 8px 25px rgba(27, 31, 59, 0.05),
+                inset 0 1px 0 rgba(255, 255, 255, 0.50);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(255, 215, 0, 0.25);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .registry-button:hover {
+            transform: translateY(-10px) scale(1.03);
+            box-shadow: 
+                0 15px 40px rgba(27, 31, 59, 0.10),
+                0 5px 15px rgba(255, 215, 0, 0.15),
+                inset 0 1px 0 rgba(255, 255, 255, 0.70);
+            border-color: rgba(255, 215, 0, 0.45);
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.08) 0%, rgba(255, 255, 255, 0.45) 100%);
+        }
+
+        .registry-button:hover .button-arrow {
+            transform: translateX(5px);
+            color: #FFD700;
+        }
+
+        .registry-button:active {
+            transform: translateY(-6px) scale(1.01);
+        }
+
+        .store-logo {
+            width: 100px;
+            height: 35px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .button-text {
+            font-family: 'Cinzel Decorative', serif;
+            font-weight: 400;
+            color: #1B1F3B;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .button-arrow {
+            font-size: 1.5rem;
+            color: #002DB0;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 35px;
+            color: #002DB0;
+            font-size: 0.9rem;
+            border-top: 2px solid rgba(255, 215, 0, 0.3);
+            margin-top: 35px;
+        }
+
+        .footer-message {
+            font-family: 'Great Vibes', cursive;
+            font-style: normal;
+            color: #FFD700;
+            margin-top: 12px;
+            font-size: 1.3rem;
+            text-shadow: 1px 1px 2px rgba(27, 31, 59, 0.5);
+        }
+
+        @media (max-width: 480px) {
+            .invitation-container {
+                margin: 10px;
+                border-radius: 20px;
+                max-width: 100%;
+            }
+            
+            .header {
+                padding: 35px 25px 60px;
+            }
+            
+            .ultrasound-logo {
+                width: 65%;
+                height: 100%;
+                
+            }
+            .ultrasound-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: sepia(30%) contrast(1.2) brightness(1.2);
+        }
+            .title {
+                font-size: 1.8rem;
+            }
+            
+            .subtitle {
+                font-size: 1.3rem;
+            }
+            
+            .content {
+                padding: 45px 25px 25px;
+            }
+            
+            .main-text {
+                font-size: 1.5rem;
+            }
+            
+            .honorees {
+                font-size: 2rem;
+            }
+            
+            .registry-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .moon {
+                width: 70px;
+                height: 70px;
+                top: 5%;
+                right: 8%;
+            }
+
+            .crown-accents {
+                padding: 0 15px;
+            }
+
+            .crown-accent {
+                width: 28px;
+                height: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="celestial-bg">
+        <div class="moon"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="star"></div>
+        <div class="floating-bubble bubble1"></div>
+        <div class="floating-bubble bubble2"></div>
+        <div class="floating-bubble bubble3"></div>
+        <div class="floating-bubble bubble4"></div>
+        <div class="floating-bubble bubble5"></div>
+    </div>
+
+    <div class="invitation-container">
+        <div class="header">
+            <div class="crown-accents">
+                <div class="crown-accent"></div>
+                <div class="crown-accent"></div>
+            </div>
+            <div class="ultrasound-logo">
+                <img src="/preview.jpeg" alt="Baby Ultrasound Image">
+            </div>
+            <h1 class="title">A Little Prince is on the Way!</h1>
+            <p class="subtitle">Please Join Us For A</p>
+            <div class="decorative-border"></div>
+        </div>
+
+        <div class="content">
+            <div class="main-text">
+                Royal Baby Shower
+            </div>
+            
+            <div class="honor-text">In Honor Of</div>
+            
+            <div class="honorees">ERIKA & WILLIE</div>
+
+            <div class="event-details">
+                <div class="detail-row">
+                    <span class="detail-label">Date</span>
+                    <span class="detail-value">Sunday, July 20th, 2025</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Time</span>
+                    <span class="detail-value">2:00 - 6:00 PM</span>
+                </div>
+                <div class="detail-row">
+                    <span class="detail-label">Location</span>
+                    <span class="detail-value">6040 Watt Ave<br>North Highlands, CA 95660</span>
+                </div>
+            </div>
+
+            <div class="rsvp-section">
+                <div class="rsvp-title">Please RSVP</div>
+                <div class="rsvp-details">
+                    Sherril at<br>
+                    <strong>916-743-1301</strong>
+                </div>
+            </div>
+
+            <div class="diaper-raffle">
+                <div class="diaper-title">👑 Diaper Raffle! 👑</div>
+                <div class="diaper-text">
+                    Each pack of diapers earns you<br>
+                    <strong>ONE RAFFLE TICKET</strong>
+                </div>
+            </div>
+
+            <div class="registry-section">
+                <h3 class="registry-title">👑 Baby Registry 👑</h3>
+                <p style="text-align: center; color: #002DB0; margin-bottom: 25px; font-size: 1rem; font-family: 'Open Sans', sans-serif;">
+                    Click the buttons below to visit our registries
+                </p>
+                
+                <div class="registry-grid">
+                    <a href="https://www.amazon.com/baby-reg/erika-hundley-august-2025-sacramento/3SVZE8F87FMFV?ref_=cm_sw_r_apin_dp_9ECWWZNBVKS7B1NV36H0&language=en_US" target="_blank" class="registry-button">
+                        <div class="store-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a9/Amazon_logo.svg/603px-Amazon_logo.svg.png" 
+                                 alt="Amazon Logo" 
+                                 style="width: 100%; height: auto; object-fit: contain;">
+                        </div>
+                        <div class="button-text">Visit Amazon Registry</div>
+                        <div class="button-arrow">→</div>
+                    </a>
+                    
+                    <a href="https://www.kohls.com/babyregistry/ac6c360c-5670-4fb7-915e-d85a29639396" target="_blank" class="registry-button">
+                        <div class="store-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Babies_%22R%22_Us_logo.svg/250px-Babies_%22R%22_Us_logo.svg.png" 
+                                 alt="Babies R Us Logo" 
+                                 style="width: 100%; height: auto; object-fit: contain;">
+                        </div>
+                        <div class="button-text">Visit Babies"R"Us Registry</div>
+                        <div class="button-arrow">→</div>
+                    </a>
+                    
+                    <a href="https://www.walmart.com/registry/br/e0feba76-dd09-4df2-8fc6-9e23aa7b73b6" target="_blank" class="registry-button">
+                        <div class="store-logo">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Walmart_logo.svg/2560px-Walmart_logo.svg.png" 
+                                 alt="Walmart Logo" 
+                                 style="width: 100%; height: auto; object-fit: contain;">
+                        </div>
+                        <div class="button-text">Visit Walmart Registry</div>
+                        <div class="button-arrow">→</div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-message">
+                We can't wait to celebrate our little prince with you! 👑
+            </div>
+        </div>
+    </div>
+</body>
+</html>
